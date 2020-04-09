@@ -2,6 +2,8 @@ class Game {
   constructor() {
     this.jaguars = [];
     this.jaguarsIMGS = [];
+    this.start = false;
+    this.finished = false;
   }
 
   init() {
@@ -16,7 +18,7 @@ class Game {
   }
 
   setup() {
-    this.capy.setup();
+    // this.capy.setup();
   }
 
   display() {
@@ -25,16 +27,34 @@ class Game {
     this.background.display();
     this.capy.display();
     this.capy.move();
-
-    if (random(1) < 0.005) {
-      this.jaguars.push(new Jaguar());
+    if (frameCount % 20 === 0) {
+      if (random(1) < 0.4) {
+        this.jaguars.push(new Jaguar());
+      }
     }
-
     // console.log(this.jaguars);
 
     this.jaguars.forEach((j) => {
       j.move();
       j.display();
+      if (j.checkCollision(this.capy)) {
+        console.log('damn you dead bru');
+        this.finished = true;
+      }
+      // if (this.jaguar.checkCollision(capy)) {
+      //   this.finished = true;
+      // }
     });
+    if (this.finished) {
+      console.log('finishs');
+      fill('blue');
+      textSize(20);
+      text('GAME OVER', 100, 30);
+      noLoop();
+    }
+
+    /*     if (this.finished) {
+    
+    } */
   }
 }

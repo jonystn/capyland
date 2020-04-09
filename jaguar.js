@@ -2,13 +2,42 @@ class Jaguar {
   constructor() {
     this.images = game.jaguarsIMGS;
     this.index = 0;
-    this.r = width + 100;
+    this.r = 65;
     this.x = width;
     this.y = height - this.r;
+    this.width = 85;
+    this.height = 61;
+  }
+
+  checkCollision(capy) {
+    let left = this.x;
+    let right = this.x + this.width;
+    let capyLeft = capy.x;
+    let capyRight = capy.x + this.width;
+
+    // console.log(left, right);
+
+    let top = this.y + 1;
+    let bottom = this.y + this.height;
+
+    let capyTop = capy.y;
+    let capyBottom = capy.y + capy.height;
+
+    let xCollision =
+      (left > capyLeft && left < capyRight - 30) ||
+      (right > capyLeft && right < capyRight - 30);
+
+    let yCollision =
+      (top > capyTop) & (top < capyBottom - 30) ||
+      (bottom > capyTop && bottom < capyBottom - 30);
+
+    let collision = xCollision && yCollision;
+
+    return collision;
   }
 
   move() {
-    this.x -= 11;
+    this.x -= 13;
   }
 
   display() {
