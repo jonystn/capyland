@@ -1,7 +1,10 @@
+let gameover;
+
 class Game {
   constructor() {
     this.jaguars = [];
     this.jaguarsIMGS = [];
+    this.capyIMGS = [];
     this.start = false;
     this.finished = false;
   }
@@ -9,12 +12,15 @@ class Game {
   init() {
     for (let i = 0; i <= 7; i++) {
       this.jaguarsIMGS.push(
-        loadImage(`assets/jaguar/frame_${i}_delay-0.06s.png`)
+        loadImage(`assets/jaguar/frame_${i}_delay-0.06s.png`)
       );
+    }
+    for (let i = 0; i <= 1; i++) {
+      this.capyIMGS.push(loadImage(`assets/capy/capy${i}.png`));
     }
     this.background = new Background();
     this.capy = new Capy();
-    this.jag = loadImage('./assets/jaguar/frame_0_delay-0.06s.png');
+    gameover = loadImage('assets/gameover.png');
   }
 
   setup() {
@@ -32,7 +38,6 @@ class Game {
         this.jaguars.push(new Jaguar());
       }
     }
-    // console.log(this.jaguars);
 
     this.jaguars.forEach((j) => {
       j.move();
@@ -41,20 +46,11 @@ class Game {
         console.log('damn you dead bru');
         this.finished = true;
       }
-      // if (this.jaguar.checkCollision(capy)) {
-      //   this.finished = true;
-      // }
     });
+
     if (this.finished) {
-      console.log('finishs');
-      fill('blue');
-      textSize(20);
-      text('GAME OVER', 100, 30);
+      image(gameover, 0, 0);
       noLoop();
     }
-
-    /*     if (this.finished) {
-    
-    } */
   }
 }

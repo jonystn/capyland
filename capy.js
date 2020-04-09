@@ -1,9 +1,11 @@
 class Capy {
   constructor() {
-    this.img = createImg('assets/capy.gif', 'Capy');
+    // this.img = createImg('assets/capy.gif', 'Capy');
+    this.img = game.capyIMGS;
+    this.index = 0;
     this.vy = 0;
     this.gravity = 4;
-    this.r = 65;
+    this.r = 73;
     this.x = this.r;
     this.y = height - this.r;
     this.width = 51;
@@ -12,7 +14,7 @@ class Capy {
 
   jump() {
     if (this.y == height - this.r) this.vy = -25;
-    console.log(this.width);
+    // console.log(this.width);
   }
 
   move() {
@@ -25,6 +27,17 @@ class Capy {
   }
 
   display() {
-    this.img.position(this.x, this.y);
+    // this.img.position(this.x, this.y);
+    if (frameCount % 4 === 0) {
+      this.index++;
+    }
+
+    image(
+      this.img[this.index % this.img.length],
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
   }
 }

@@ -2,7 +2,7 @@ class Jaguar {
   constructor() {
     this.images = game.jaguarsIMGS;
     this.index = 0;
-    this.r = 65;
+    this.r = 73;
     this.x = width;
     this.y = height - this.r;
     this.width = 85;
