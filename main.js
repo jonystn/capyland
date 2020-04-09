@@ -24,9 +24,10 @@ function draw() {
     }
     frameRate(40);
     game.display();
-    fill('#112024');
-    textSize(20);
-    text(`${score}`, 520, 30);
+    fill('#412b0f');
+    textFont('VT323');
+    textSize(25);
+    text(`SCORE 0${score}`, 10, 30);
   } else {
     image(intro, 0, 0);
   }
