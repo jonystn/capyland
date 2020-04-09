@@ -1,16 +1,20 @@
 let game = new Game();
-let score = 0;
+let score = 00000;
 let intro;
+let jumpSound;
 
 function preload() {
-  game.init();
+  soundFormats('mp3');
+  jumpSound = loadSound('assets/sounds/Jump.mp3');
   intro = loadImage('assets/intro.png');
+  game.init();
   /*  console.log(game);
   console.log("Hello"); */
 }
 function setup() {
   createCanvas(550, 304);
   game.setup();
+
   /*  console.log(game.random); */
 }
 function draw() {
@@ -22,7 +26,7 @@ function draw() {
     game.display();
     fill('#112024');
     textSize(20);
-    text(`Score ${score}`, 10, 30);
+    text(`${score}`, 520, 30);
   } else {
     image(intro, 0, 0);
   }
@@ -33,6 +37,8 @@ function keyPressed() {
   let spaceBarCode = 32;
   if (keyCode === spaceBarCode) {
     game.capy.jump();
+    jumpSound.setVolume(0.1);
+    jumpSound.play();
     // console.log('please jump');
   }
   if (keyCode === 13) {

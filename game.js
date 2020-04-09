@@ -1,5 +1,5 @@
 let gameover;
-
+let gameoverSound;
 class Game {
   constructor() {
     this.jaguars = [];
@@ -21,6 +21,8 @@ class Game {
     this.background = new Background();
     this.capy = new Capy();
     gameover = loadImage('assets/gameover.png');
+    soundFormats('mp3');
+    gameoverSound = loadSound('assets/sounds/Jaguar.mp3');
   }
 
   setup() {
@@ -31,8 +33,6 @@ class Game {
     clear();
 
     this.background.display();
-    this.capy.display();
-    this.capy.move();
     if (frameCount % 20 === 0) {
       if (random(1) < 0.4) {
         this.jaguars.push(new Jaguar());
@@ -45,8 +45,12 @@ class Game {
       if (j.checkCollision(this.capy)) {
         console.log('damn you dead bru');
         this.finished = true;
+        gameoverSound.setVolume(0.1);
+        gameoverSound.play();
       }
     });
+    this.capy.display();
+    this.capy.move();
 
     if (this.finished) {
       image(gameover, 0, 0);

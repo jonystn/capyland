@@ -25,7 +25,7 @@ class Jaguar {
 
     let xCollision =
       (left > capyLeft && left < capyRight - 30) ||
-      (right > capyLeft && right < capyRight - 30);
+      (right - 30 > capyLeft && right < capyRight - 30);
 
     let yCollision =
       (top > capyTop) & (top < capyBottom - 30) ||
