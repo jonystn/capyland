@@ -36,7 +36,7 @@ function draw() {
 //
 function keyPressed() {
   let spaceBarCode = 32;
-  if (keyCode === spaceBarCode) {
+  if (keyCode === spaceBarCode && game.finished === false) {
     game.capy.jump();
     jumpSound.setVolume(0.1);
     jumpSound.play();
@@ -48,6 +48,21 @@ function keyPressed() {
 
   if (keyCode === 13 && game.finished === true) {
     window.location.reload();
+    game.start = true;
+  }
+}
+
+function mousePressed() {
+  game.capy.jump();
+  jumpSound.setVolume(0.1);
+  jumpSound.play();
+
+  if (game.finished === true) {
+    window.location.reload();
+    game.start = true;
+  }
+
+  if (game.start === false) {
     game.start = true;
   }
 }

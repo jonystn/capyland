@@ -55,3 +55,17 @@ class Jaguar {
     );
   }
 }
+
+function top3(products, amounts, prices) {
+  const rev = products.map(function (v, i, arr) {
+    return { revenue: prices[i] * amounts[i], name: arr[i], index: i };
+  });
+  const sorted = rev.sort(function (a, b) {
+    return b.revenue - a.revenue || a.index - b.index;
+  });
+  // return sorted;
+
+  return sorted.slice(0, 3).map(function (item) {
+    return item.name;
+  });
+}
