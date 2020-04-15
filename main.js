@@ -54,12 +54,17 @@ function keyPressed() {
 
 function mousePressed() {
   game.capy.jump();
-  jumpSound.setVolume(0.1);
-  jumpSound.play();
+  if (jumpSound.isPlaying()) {
+    jumpSound.stop();
+  } else {
+    jumpSound.setVolume(0.1);
+    jumpSound.play();
+  }
 
   if (game.finished === true) {
     window.location.reload();
     game.start = true;
+    jumpSound.stop();
   }
 
   if (game.start === false) {
